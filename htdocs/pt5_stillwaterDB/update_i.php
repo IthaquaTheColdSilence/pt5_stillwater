@@ -1,5 +1,4 @@
 <?php
-include("nav.php");
 include("database.php");
 
 $item_num = $_GET['item_num'];
@@ -99,14 +98,42 @@ if (!$itemData) {
         color: #FFF;
         /* White text on hover */
     }
+
+    a[href*="items.php"] {
+        display: inline-block;
+        padding: 5px 20px;
+        margin: 0 10px;
+        background-color: #185875;
+        /* Blue accent to match table headings */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    a[href*="items.php"]:hover {
+        background-color: #FB667A;
+        cursor: pointer;
+        transition: background-color 0.1s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        /* Pink hover effect to match table details */
+    }
 </style>
 <br><br>
 <h2>&lt;Update Item's Description&gt;</h2>
 <br>
 <form action="update_i.php?item_num=<?php echo $item_num; ?>" method="post">
+    <a href="items.php">Back</a>
+    <br><br>
 
-    <label for="condition">Condition:</label>
-    <input type="text" id="condition" name="condition" value="<?php echo $itemData['condition']; ?>" required><br>
+    <label for="condition">Condition: </label>
+    <select name="condition" id="condition" required>
+        <option value="" disabled selected align="center">Currently: <?php echo htmlspecialchars($itemData['condition']); ?></option>
+        <option value="Excellent" style="color: Gold; text-align: center;">Excellent</option>
+        <option value="Good" style="color: GreenYellow; text-align: center;">Good</option>
+        <option value="Fair" style="color: Orange; text-align: center;">Fair</option>
+        <option value="Bad" style="color: Red; text-align: center;">Bad</option>
+    </select>
 
     <label for="item_type">Item Type:</label>
     <input type="text" id="item_type" name="item_type" value="<?php echo $itemData['item_type']; ?>" required><br>
