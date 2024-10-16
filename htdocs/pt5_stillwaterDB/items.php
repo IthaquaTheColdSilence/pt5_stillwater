@@ -50,38 +50,84 @@ if (!$query) {
     .td a[href*="items.php?action=delete"]:hover {
         background-color: #FB667A;
     }
+
+    .condition-excellent {
+        color: gold;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .condition-good {
+        color: greenyellow;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .condition-fair {
+        color: orange;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .condition-bad {
+        color: red;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 5px;
+    }
 </style>
 <link rel="stylesheet" href="css/style.css">
 
 <body>
     <br>
     <br>
-    <h1><span class="blue"></span>Still Waters<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
+    <h1><span class="blue"></span>Stillwater<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
     <table class="container">
-            <tr>
-                <th colspan="4">Still Waters Items List</th>
-                <th></th>
-                <th>
-                <th class="th">
-                    <a href="insert_i.php">Insert Item</a>
-                </th>
-            </tr>
-            <tbody align="center">
+        <tr>
+            <th colspan="4">Stillwater Items List</th>
+            <th></th>
+            <th>
+            <th class="th">
+                <a href="insert_i.php">Insert Item</a>
+            </th>
+        </tr>
+        <tbody align="center">
             <tr>
                 <th width="10.5%">Condition</th>
                 <th width="11%">Item Type</th>
                 <th width="10%">Price</th>
                 <th width="15%">Description</th>
                 <th width="20%">Critiqued Comments</th>
-                <th width="7.5%">Item #</th>
+                <th width="7.5%">Item Number</th>
                 <th align='center'>Actions</th>
             </tr>
             <?php while ($result = mysqli_fetch_assoc($query)) {
-                $formatPrice = number_format($result['asking_price']); ?>
+                $formatPrice = number_format($result['asking_price']);
+                $conditionClass = '';
+                switch (strtolower($result['condition'])) {
+                    case 'excellent':
+                        $conditionClass = 'condition-excellent';
+                        break;
+                    case 'good':
+                        $conditionClass = 'condition-good';
+                        break;
+                    case 'fair':
+                        $conditionClass = 'condition-fair';
+                        break;
+                    case 'bad':
+                        $conditionClass = 'condition-bad';
+                        break;
+                }
+            ?>
                 <tr>
-                    <td><?php echo $result['condition']; ?></td>
+                    <td class="<?php echo $conditionClass; ?>">
+                        <?php echo $result['condition']; ?>
+                    </td>
                     <td><?php echo $result['item_type']; ?></td>
-                    <td><?php echo $formatPrice; ?></td>
+                    <td align="left">₱ <?php echo $formatPrice; ?></td>
                     <td><?php echo $result['description']; ?></td>
                     <td><?php echo $result['critiqued_comments']; ?></td>
                     <td><?php echo $result['item_num']; ?></td>

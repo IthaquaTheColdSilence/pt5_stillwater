@@ -12,6 +12,7 @@ if (!$query) {
 ?>
 </head>
 <title>Purchase Record</title>
+
 <body>
     <style>
         .td a[href*="update_p.php"] {
@@ -52,51 +53,99 @@ if (!$query) {
             background-color: #FB667A;
             /* Pink hover effect to match table details */
         }
+
+        .condition-excellent {
+            color: gold;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .condition-good {
+            color: greenyellow;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .condition-fair {
+            color: orange;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .condition-bad {
+            color: red;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .container td:first-child {
+            color: #FB667A;
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
     <br>
     <br>
-    <h1><span class="blue"></span>Still Waters<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
-        <table class="container">
-            <tbody>
-                <tr>
-                    <th colspan="5">Still Waters Antique Purchases Record</th>
-                    <th></th>
-                    <th class="th">
-                        <a href="insert_p.php">Record a Purchase</a>
-                    </th>
-                </tr>
-                <tr>
-                    <th width="15%">Date Purchased</th>
-                    <th width="7.5%">Client #</th>
-                    <th width="7.5%">Item #</th>
-                    <th width="12%">Purchase Cost</th>
-                    <th width="13.5%">Condition of the Item</th>
-                    <th width="15%" align="center">Purchase ID</th>
-                    <th align='center'>Action</th>
-                </tr>
-                <tbody align="center">
-                <?php
-                while ($result = mysqli_fetch_assoc($query)) {
-                    $formatCost = number_format($result['p_cost']);
-                    $datePurchased = !empty($result['p_date']) ? date("F d, Y", strtotime($result['p_date'])) : 'N/A';
-                ?>
-                    <tr>
-                        <td><?php echo $datePurchased; ?></td>
-                        <td align="center"><?php echo $result['ClientNumber']; ?></td>
-                        <td><?php echo $result['item_num']; ?></td>
-                        <td>₱ <?php echo $formatCost; ?></td>
-                        <td><?php echo $result['condition_at_purchase']; ?></td>
-                        <td><?php echo $result['purchase_id']; ?></td>
-                        <td align="center" width="20%" class="td">
-                            <a href='purchases.php?action=delete&purchase_id=<?php echo $result["purchase_id"]; ?>' onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
-                        </td>
-                    </tr>
-                <?php
+    <h1><span class="blue"></span>Stillwater<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
+    <table class="container">
+        <tbody>
+            <tr>
+                <th colspan="5">Stillwater Antique Purchases Record</th>
+                <th></th>
+                <th class="th">
+                    <a href="insert_p.php">Add Record</a>
+                </th>
+            </tr>
+            <tr align="center">
+                <th>Date Purchased</th>
+                <th>Condition of the Item</th>
+                <th>Purchase Cost</th>
+                <th>Purchase ID</th>
+                <th>Item Number</th>
+                <th>Client Number</th>
+                <th>Action</th>
+            </tr>
+        <tbody align="center">
+            <?php
+            while ($result = mysqli_fetch_assoc($query)) {
+                $formatCost = number_format($result['p_cost']);
+                $datePurchased = !empty($result['p_date']) ? date("F d, Y", strtotime($result['p_date'])) : 'N/A';
+
+                $conditionClass = '';
+                switch (strtolower($result['condition_at_purchase'])) {
+                    case 'excellent':
+                        $conditionClass = 'condition-excellent';
+                        break;
+                    case 'good':
+                        $conditionClass = 'condition-good';
+                        break;
+                    case 'fair':
+                        $conditionClass = 'condition-fair';
+                        break;
+                    case 'bad':
+                        $conditionClass = 'condition-bad';
+                        break;
                 }
-                ?>
-            </tbody>
-        </table>
+            ?>
+                <tr>
+                    <td><?php echo $datePurchased; ?></td>
+                    <td class="<?php echo $conditionClass; ?>"><?php echo $result['condition_at_purchase']; ?></td>
+                    <td>₱ <?php echo $formatCost; ?></td>
+                    <td><?php echo $result['purchase_id']; ?></td>
+                    <td><?php echo $result['item_num']; ?></td>
+                    <td><?php echo $result['ClientNumber']; ?></td>
+                    <td class="td" width="20%">
+                        <a href='purchases.php?action=delete&purchase_id=<?php echo $result["purchase_id"]; ?>' onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
     <?php
     if (isset($_GET['action']) && isset($_GET['purchase_id'])) {
         $action = $_GET['action'];

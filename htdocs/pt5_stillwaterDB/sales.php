@@ -67,11 +67,11 @@ if (!$query) {
 
 <body>
     <br><br>
-    <h1><span class="blue"></span>Still Waters<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
+    <h1><span class="blue"></span>Stillwater<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
     <table class="container">
         <thead>
             <tr>
-                <th colspan="7">Still Waters Antique Sales Record</th>
+                <th colspan="7">Stillwater Antique Sales Record</th>
                 <th class="th"><a href="insert_s.php">Add Sales Record</a></th>
             </tr>
             <tr>
