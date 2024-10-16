@@ -75,6 +75,7 @@ if (!$query) {
                     <th width="15%" align="center">Purchase ID</th>
                     <th align='center'>Action</th>
                 </tr>
+                <tbody align="center">
                 <?php
                 while ($result = mysqli_fetch_assoc($query)) {
                     $formatCost = number_format($result['p_cost']);

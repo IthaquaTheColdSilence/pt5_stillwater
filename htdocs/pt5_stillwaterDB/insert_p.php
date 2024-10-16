@@ -2,12 +2,8 @@
 include("nav.php");
 include("database.php");
 
-$isNewClient = isset($_POST['is_new_client']) ? $_POST['is_new_client'] : 'existing';
-
 if (isset($_POST['submit'])) {
-    if ($isNewClient == "existing") {
-        $clientNumber = $_POST['ClientNumber'];  
-    } else {
+        $clientNumber = $_POST['ClientNumber']; 
         $givenName = trim($_POST['givenName']);
         $lastName = trim($_POST['lastName']);
         $ClientAddress = trim($_POST['ClientAddress']);
@@ -138,12 +134,7 @@ if (isset($_POST['submit'])) {
     <form action="" method="POST">
         <h2>Client Information</h2>
         <label for="is_new_client">Select a type of Client:</label>
-        <select name="is_new_client" id="is_new_client" required onchange="this.form.submit()"> <!-- Automatically submit the form on selection -->
-            <option value="existing" <?= $isNewClient == 'existing' ? 'selected' : '' ?>>Existing Client</option>
-            <option value="new" <?= $isNewClient == 'new' ? 'selected' : '' ?>>New Client</option>
-        </select>
         <br><br>
-    <!-- Existing Client Section -->
         <?php if ($isNewClient == 'existing'): ?>
         
             <div id="existing_client_fields">
@@ -159,7 +150,6 @@ if (isset($_POST['submit'])) {
                     ?>
                 </select>
             </div>
-    <!-- New Client Section -->
         <?php else: ?>
             <div id="new_client_fields">
                 <label for="lastName">Last Name:</label>

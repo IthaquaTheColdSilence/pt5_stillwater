@@ -18,6 +18,7 @@ if (!$query) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clients List</title>
 </head>
+<link rel="stylesheet" href="css/style.css">
 <style>
     .td a[href*="update_c.php"] {
         display: inline-block;
@@ -57,39 +58,44 @@ if (!$query) {
         background-color: #FB667A;
         /* Pink hover effect to match table details */
     }
+
+    .container {
+        text-align: left;
+        width: 70%;
+        margin: 0 auto;
+        display: table;
+        padding: 0 0 8em 0;
+    }
 </style>
-<link rel="stylesheet" href="css/style.css">
 
 <body>
     <br><br><br>
-    <h1><span class="blue"></span>Still Waters<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
+    <h1><span class="blue"></span>Stillwater<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
     <form action="c_list.php" method="POST">
         <table class="container" border="0">
             <thead>
                 <tr>
-                    <th colspan="4">Still Waters Clients List</th>
+                    <th colspan="3">Stillwater Clients List</th>
                     <th class="th">
                         <a href="insert_c.php">Insert Client</a>
                     </th>
                 </tr>
                 <tr>
-                    <th align="left">Last Name</th>
-                    <th align="left">Given Name</th>
+                    <th align="center">Given Name</th>
                     <th align="center">Address</th>
-                    <th align="center">Client #</th>
+                    <th align="center">Client Number</th>
                     <th align="center">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // Loop through all clients and display them
                 while ($result = mysqli_fetch_assoc($query)) { ?>
                     <tr>
-                        <td><?php echo $result['lastName']; ?></td>
-                        <td><?php echo $result['givenName']; ?></td>
-                        <td><?php echo $result['ClientAddress']; ?></td>
-                        <td align="center"><?php echo $result['ClientNumber']; ?></td>
-                        <td align="center" width="20%" class="td">
+                        <td align="left" width="25%"><span style="color: yellow;"><?php echo htmlspecialchars($result['lastName']); ?></span>, 
+                        <?php echo htmlspecialchars($result['givenName']); ?></td>
+                        <td align="center" width="40%"><?php echo $result['ClientAddress']; ?></td>
+                        <td align="center"><span style="color: #FB667A;"><?php echo $result['ClientNumber']; ?></td>
+                        <td align="center" class="td">
                             <a href='update_c.php?action=edit&ClientNumber=<?php echo $result["ClientNumber"]; ?>'>Edit</a>
                             <a href='c_list.php?action=delete&ClientNumber=<?php echo $result["ClientNumber"]; ?>' onclick="return confirm('Are you sure you want to delete this client?');">Delete</a>
                         </td>

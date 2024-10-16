@@ -58,7 +58,6 @@ if (!$query) {
     <br>
     <h1><span class="blue"></span>Still Waters<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
     <table class="container">
-        <tbody>
             <tr>
                 <th colspan="4">Still Waters Items List</th>
                 <th></th>
@@ -67,6 +66,7 @@ if (!$query) {
                     <a href="insert_i.php">Insert Item</a>
                 </th>
             </tr>
+            <tbody align="center">
             <tr>
                 <th width="10.5%">Condition</th>
                 <th width="11%">Item Type</th>

@@ -85,7 +85,7 @@ if (!$query) {
                 <th align="center">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody align="center">
             <?php
             while ($result = mysqli_fetch_assoc($query)) {
                 $saleID = $result['saleID'];
