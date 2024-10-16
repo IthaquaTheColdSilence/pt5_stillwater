@@ -29,6 +29,9 @@ if (!$query) {
 
         .td a[href*="update_p.php"]:hover {
             background-color: #72BF78;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             /* Pink hover effect to match table details */
         }
 
@@ -46,6 +49,9 @@ if (!$query) {
 
         .td a[href*="purchases.php?action=delete"]:hover {
             background-color: #FB667A;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             /* Pink hover effect to match table details */
         }
 
@@ -110,9 +116,10 @@ if (!$query) {
             </tr>
         <tbody align="center">
             <?php
+            date_default_timezone_set("Asia/Manila");
             while ($result = mysqli_fetch_assoc($query)) {
                 $formatCost = number_format($result['p_cost']);
-                $datePurchased = !empty($result['p_date']) ? date("F d, Y", strtotime($result['p_date'])) : 'N/A';
+                $datePurchased = !empty($result['p_date']) ? date("F j, Y -- g:i:s a", strtotime($result['p_date'])) : 'N/A';
 
                 $conditionClass = '';
                 switch (strtolower($result['condition_at_purchase'])) {
@@ -133,7 +140,7 @@ if (!$query) {
                 <tr>
                     <td><?php echo $datePurchased; ?></td>
                     <td class="<?php echo $conditionClass; ?>"><?php echo $result['condition_at_purchase']; ?></td>
-                    <td>₱ <?php echo $formatCost; ?></td>
+                    <td><span style="color: green;">₱ </span><?php echo $formatCost; ?></td>
                     <td><?php echo $result['purchase_id']; ?></td>
                     <td><?php echo $result['item_num']; ?></td>
                     <td><?php echo $result['ClientNumber']; ?></td>

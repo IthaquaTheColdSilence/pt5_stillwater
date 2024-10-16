@@ -34,6 +34,9 @@ if (!$query) {
 
     .td a[href*="update_c.php"]:hover {
         background-color: #72BF78;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         /* Pink hover effect to match table details */
     }
 
@@ -51,6 +54,9 @@ if (!$query) {
 
     .td a[href*="c_list.php?action=delete"]:hover {
         background-color: #FB667A;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         /* Pink hover effect to match table details */
     }
 

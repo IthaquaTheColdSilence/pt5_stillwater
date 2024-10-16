@@ -1,5 +1,4 @@
 <?php
-include("nav.php");
 include("database.php");
 ?>
 <style>
@@ -90,10 +89,32 @@ include("database.php");
         color: #FFF;
         /* White text on hover */
     }
+
+    a[href*="c_list.php"] {
+        display: inline-block;
+        padding: 5px 20px;
+        margin: 0 10px;
+        background-color: #185875;
+        /* Blue accent to match table headings */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    a[href*="c_list.php"]:hover {
+        background-color: #FB667A;
+        cursor: pointer;
+        transition: background-color 0.1s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        /* Pink hover effect to match table details */
+    }
 </style>
 <h2>&lt;Add Client&gt;</h2>
 <br>
 <form action="insert_c.php" method="post">
+    <a href="c_list.php">Back</a>
+    <br><br>
 
     <label for="lastName">Last Name:</label>
     <input type="text" id="lastName" name="lastName" required><br>

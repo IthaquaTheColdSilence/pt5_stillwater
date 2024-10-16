@@ -34,6 +34,9 @@ if (!$query) {
 
     .td a[href*="update_i.php"]:hover {
         background-color: #72BF78;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
     .td a[href*="items.php?action=delete"] {
@@ -49,6 +52,9 @@ if (!$query) {
 
     .td a[href*="items.php?action=delete"]:hover {
         background-color: #FB667A;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
     .condition-excellent {
@@ -97,10 +103,10 @@ if (!$query) {
         <tbody align="center">
             <tr>
                 <th width="10.5%">Condition</th>
-                <th width="11%">Item Type</th>
                 <th width="10%">Price</th>
-                <th width="15%">Description</th>
+                <th width="20%">Description</th>
                 <th width="20%">Critiqued Comments</th>
+                <th width="11%">Item Type</th>
                 <th width="7.5%">Item Number</th>
                 <th align='center'>Actions</th>
             </tr>
@@ -126,11 +132,11 @@ if (!$query) {
                     <td class="<?php echo $conditionClass; ?>">
                         <?php echo $result['condition']; ?>
                     </td>
-                    <td><?php echo $result['item_type']; ?></td>
-                    <td align="left">₱ <?php echo $formatPrice; ?></td>
+                    <td align="left"><span style="color: green;">₱</span> <?php echo $formatPrice; ?></td>
                     <td><?php echo $result['description']; ?></td>
                     <td><?php echo $result['critiqued_comments']; ?></td>
-                    <td><?php echo $result['item_num']; ?></td>
+                    <td><?php echo $result['item_type']; ?></td>
+                    <td><span style="color: #FB667A"><?php echo $result['item_num']; ?></span></td>
                     <td align="center" width="20%" class="td">
                         <a href='update_i.php?action=edit&item_num=<?php echo $result["item_num"]; ?>'>Edit</a>
                         <a href='items.php?action=delete&item_num=<?php echo $result["item_num"]; ?>' onclick="return confirm('Are you sure you want to mark this item as sold?');">Delete</a>
