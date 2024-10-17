@@ -52,7 +52,9 @@ INSERT INTO `items` (`item_num`, `description`, `asking_price`, `critiqued_comme
 (8,	'Mid-century Modern Chair',	950,	'Iconic design fabric slightly worn',	'Good',	'Furniture',	0),
 (9,	'Georgian Mirror',	1800,	'Gilt frame with aged patina',	'Good',	'Home Decor',	1),
 (11,	'ItemTest',	1200,	'Test',	'Bad',	'TestItem',	1),
-(12,	'Emerald',	9998,	'cra',	'Excellent',	'Jewel',	1);
+(12,	'Emerald',	9998,	'cra',	'Excellent',	'Jewel',	1),
+(13,	'134134',	1345134,	'134134',	'test',	'134134',	1),
+(14,	'awdvd',	234567890,	'dawv',	'Excellent',	'dawdv',	1);
 
 DROP TABLE IF EXISTS `purchases`;
 CREATE TABLE `purchases` (
@@ -91,4 +93,4 @@ CREATE TABLE `sales` (
 INSERT INTO `sales` (`saleID`, `commissionPaid`, `sellingPrice`, `salesTax`, `date_sold`, `ClientNumber`, `item_num`) VALUES
 (1,	300,	77777777,	9333333,	'2024-10-16',	11,	9);
 
--- 2024-10-16 04:36:37
+-- 2024-10-16 12:54:33
