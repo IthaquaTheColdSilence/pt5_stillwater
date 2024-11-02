@@ -43,8 +43,8 @@ Some things to try:
    - Upload your files in the `htdocs` directory to run.
    - DO NOT DELETE OR MODIFY THE FILES AND FOLDERS THAT ARE BUILT FROM THE TEMPLATE IT WOULD CAUSE A CRASH ON YOUR CONTAINERS.
 
-1. **Running a server:**
-   - From the terminal, run `php -S 0.0.0.0:8000`
+1. **Running a server:**php -S 0.0.0.0:8000
+   - From the terminal, run ``
    - Click "Open in Browser" in the notification that appears to access the web app on this new port.
 1. **Running a server with database especially grade 12:**
    - To access the database, go to Ports tab (if you cannot see the Ports panel, click the **three-horizontal-bar** icon, click **View** then select **Terminal**

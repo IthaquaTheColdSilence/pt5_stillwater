@@ -1,8 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items List</title>
+</head>
+<link rel="stylesheet" href="css/style.css">
 <?php
 include("nav.php");
 include("database.php");
 
-// Only show items that have not been sold
 $sql = "SELECT * FROM items WHERE is_sold = 0 ORDER BY item_num DESC";
 
 $query = mysqli_query($conn, $sql);
@@ -11,19 +18,10 @@ if (!$query) {
     echo "Error: " . mysqli_error($conn);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Items List</title>
-</head>
 <style>
     .td a[href*="update_i.php"] {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 15px;
         margin: 0 10px;
         background-color: #185875;
         color: white;
@@ -41,7 +39,7 @@ if (!$query) {
 
     .td a[href*="items.php?action=delete"] {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 15px;
         margin: 0 10px;
         background-color: #185875;
         color: white;
@@ -85,30 +83,28 @@ if (!$query) {
         border-radius: 5px;
     }
 </style>
-<link rel="stylesheet" href="css/style.css">
-
 <body>
     <br>
     <br>
-    <h1><span class="blue"></span>Stillwater<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
     <table class="container">
         <tr>
-            <th colspan="4">Stillwater Items List</th>
-            <th></th>
-            <th>
-            <th class="th">
-                <a href="insert_i.php">Insert Item</a>
-            </th>
+            <th class="th" width="17%"><a href="insert_c.php">Insert Client</a></th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th align="right">Stillwater Items List</th>
         </tr>
         <tbody align="center">
             <tr>
-                <th width="10.5%">Condition</th>
-                <th width="10%">Price</th>
-                <th width="20%">Description</th>
-                <th width="20%">Critiqued Comments</th>
-                <th width="11%">Item Type</th>
-                <th width="7.5%">Item Number</th>
-                <th align='center'>Actions</th>
+                <th>Condition</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Critiqued Comments</th>
+                <th>Item Type</th>
+                <th>Item Number</th>
+                <th>Actions</th>
             </tr>
             <?php while ($result = mysqli_fetch_assoc($query)) {
                 $formatPrice = number_format($result['asking_price']);
