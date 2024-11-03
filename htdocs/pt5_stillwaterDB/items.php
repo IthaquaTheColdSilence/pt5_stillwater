@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,9 +84,9 @@ if (!$query) {
         border-radius: 5px;
     }
 </style>
+
 <body>
-    <br>
-    <br>
+    <br><br><br><br><br><br>
     <table class="container">
         <tr>
             <th class="th" width="17%"><a href="insert_c.php">Insert Client</a></th>
@@ -94,17 +95,17 @@ if (!$query) {
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
-            <th align="right">Stillwater Items List</th>
+            <th align="center">Stillwater Items List</th>
         </tr>
         <tbody align="center">
             <tr>
-                <th>Condition</th>
-                <th>Price</th>
-                <th>Description</th>
+                <th>Name / Description</th>
+                <th width="60px">Condition</th>
+                <th width="50px">Price</th>
                 <th>Critiqued Comments</th>
                 <th>Item Type</th>
-                <th>Item Number</th>
-                <th>Actions</th>
+                <th width="20px">Item Number</th>
+                <th width="100px">Actions</th>
             </tr>
             <?php while ($result = mysqli_fetch_assoc($query)) {
                 $formatPrice = number_format($result['asking_price']);
@@ -125,11 +126,11 @@ if (!$query) {
                 }
             ?>
                 <tr>
+                    <td><?php echo $result['description']; ?></td>
                     <td class="<?php echo $conditionClass; ?>">
                         <?php echo $result['condition']; ?>
                     </td>
                     <td align="left"><span style="color: green;">₱</span> <?php echo $formatPrice; ?></td>
-                    <td><?php echo $result['description']; ?></td>
                     <td><?php echo $result['critiqued_comments']; ?></td>
                     <td><?php echo $result['item_type']; ?></td>
                     <td><span style="color: #FB667A"><?php echo $result['item_num']; ?></span></td>

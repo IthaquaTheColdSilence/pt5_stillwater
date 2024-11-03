@@ -20,7 +20,7 @@ if (!$query) {
 <style>
     .td a[href*="update_c.php"] {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 15px;
         margin: 0 10px;
         background-color: #185875;
         /* Blue accent to match table headings */
@@ -40,7 +40,7 @@ if (!$query) {
 
     .td a[href*="c_list.php?action=delete"] {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 15px;
         margin: 0 10px;
         background-color: #185875;
         /* Blue accent to match table headings */
@@ -62,17 +62,9 @@ if (!$query) {
         background-color: #FB667A;
         /* Pink hover effect to match table details */
     }
-
-    .container {
-        text-align: left;
-        width: 90%;
-        margin: 0 auto;
-        display: table;
-        padding: 0 0 8em 0;
-    }
 </style>
 <body>
-    <br><br><br>
+    <br><br><br><br><br><br>
     <form action="c_list.php" method="POST">
         <table border="1">
             <table class="container" border="0">
@@ -84,10 +76,10 @@ if (!$query) {
                         <th align="right">Stillwater Client List</th>
                     </tr>
                     <tr>
-                        <th align="center" style="padding: 20px;">Given Name</th>
-                        <th align="center">Address</th>
-                        <th align="center">Client Number</th>
-                        <th align="center">Actions</th>
+                        <th align="center">Given Name</th>
+                        <th align="center" width="100px">Address</th>
+                        <th align="center" width="30px">Client Number</th>
+                        <th align="center" >Actions</th>
                     </tr>
                 <tbody>
                     <?php
