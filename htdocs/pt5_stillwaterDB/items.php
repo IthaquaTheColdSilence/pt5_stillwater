@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items List</title>
-</head>
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 <?php
 include("nav.php");
 include("database.php");
@@ -23,7 +22,7 @@ if (!$query) {
     .td a[href*="update_i.php"] {
         display: inline-block;
         padding: 5px 15px;
-        margin: 0 10px;
+        margin: 0 5px;
         background-color: #185875;
         color: white;
         text-decoration: none;
@@ -41,7 +40,7 @@ if (!$query) {
     .td a[href*="items.php?action=delete"] {
         display: inline-block;
         padding: 5px 15px;
-        margin: 0 10px;
+        margin: 0 5px;
         background-color: #185875;
         color: white;
         text-decoration: none;
@@ -84,29 +83,26 @@ if (!$query) {
         border-radius: 5px;
     }
 </style>
-
+</head>
 <body>
     <br><br><br><br><br><br>
     <table class="container">
+        <thead>
         <tr>
-            <th class="th" width="17%"><a href="insert_i.php">Insert Client</a></th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th align="center">Stillwater Items List</th>
+            <th class="th" colspan="6"><a href="insert_i.php">Insert Client</a></th>
+            <th align="right">Stillwater Items List</th>
         </tr>
-        <tbody align="center">
-            <tr>
-                <th>Name / Description</th>
-                <th width="60px">Condition</th>
-                <th width="50px">Price</th>
-                <th>Critiqued Comments</th>
-                <th>Item Type</th>
-                <th width="20px">Item Number</th>
-                <th width="100px">Actions</th>
-            </tr>
+        <tr align="center">
+            <th width="150px">Name / Description</th>
+            <th width="80px">Condition</th>
+            <th width="80px">Price</th>
+            <th width="200px">Critiqued Comments</th>
+            <th width="50px">Item Type</th>
+            <th width="50px">Item Number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
             <?php while ($result = mysqli_fetch_assoc($query)) {
                 $formatPrice = number_format($result['asking_price']);
                 $conditionClass = '';
@@ -125,7 +121,7 @@ if (!$query) {
                         break;
                 }
             ?>
-                <tr>
+                <tr align="center">
                     <td><?php echo $result['description']; ?></td>
                     <td class="<?php echo $conditionClass; ?>">
                         <?php echo $result['condition']; ?>
@@ -147,7 +143,6 @@ if (!$query) {
             $item_num = $_GET['item_num'];
 
             if ($action == 'delete') {
-                // Mark item as sold instead of deleting it
                 $sql = "DELETE FROM items WHERE item_num = '$item_num'";
                 if (mysqli_query($conn, $sql)) {
                     echo "<script>alert('Deletion is successful.'); window.location='items.php';</script>";

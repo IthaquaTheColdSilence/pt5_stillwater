@@ -1,57 +1,3 @@
-<?php 
-include("database.php");
-
-if (isset($_POST['submit'])) {
-    
-    // Retrieve ClientNumber from POST request and trim it
-    $clientNumber = trim($_POST['ClientNumber']);
-    
-    // If ClientNumber is not set, we should handle it accordingly
-    if (empty($clientNumber)) {
-        echo "<script>alert('Please select a client.'); window.location='purchases.php';</script>";
-        exit;
-    }
-
-    // Check if the client already exists
-    $sql = "SELECT * FROM allclients WHERE ClientNumber = '$clientNumber'";
-    $query = mysqli_query($conn, $sql);
-
-    if ($query && mysqli_num_rows($query) > 0) {
-        $clientData = mysqli_fetch_assoc($query);
-        // Now you can use $clientData['givenName'], $clientData['lastName'], etc., if needed
-    } else {
-        echo "<script>alert('Client not found.'); window.location='purchases.php';</script>";
-        exit;
-    }
-
-    // Item information
-    $asking_price = $_POST['asking_price'];
-    $item_type = $_POST['item_type'];
-    $description = $_POST['description'];
-    $critiqued_comments = $_POST['critiqued_comments'];
-    $condition_at_purchase = $_POST['condition_at_purchase'];
-
-    // Insert the item
-    $insertItemSql = "INSERT INTO items (asking_price, item_type, description, critiqued_comments, `condition`) 
-                      VALUES ('$asking_price', '$item_type', '$description', '$critiqued_comments', '$condition_at_purchase')";
-    if (mysqli_query($conn, $insertItemSql)) {
-        $itemNumber = mysqli_insert_id($conn);
-
-        $p_cost = $_POST['p_cost'];
-
-        // Insert the purchase record
-        $insertPurchaseSql = "INSERT INTO purchases (p_cost, condition_at_purchase, ClientNumber, item_num) 
-                              VALUES ('$p_cost', '$condition_at_purchase', '$clientNumber', '$itemNumber')";
-        if (mysqli_query($conn, $insertPurchaseSql)) {
-            echo "<script>alert('Client, Purchase, and Item have been added successfully.'); window.location='purchases.php';</script>";
-        } else {
-            echo "<script>alert('Failed to add Purchase: " . mysqli_error($conn) . "'); window.location='purchases.php';</script>";
-        }
-    } else {
-        echo "<script>alert('Failed to add Item: " . mysqli_error($conn) . "'); window.location='purchases.php';</script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +15,20 @@ if (isset($_POST['submit'])) {
             flex-direction: column;
             align-items: center;
             margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        form {
+            width: 90%;
+            max-width: 600px;
+            /* Set a maximum width */
+            padding: 20px;
+            background-color: #323C50;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            /* Center the form */
         }
 
         h1 {
@@ -82,6 +42,16 @@ if (isset($_POST['submit'])) {
             margin-top: 0;
         }
 
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        hr {
+            margin: 15px 0;
+        }
+
         form {
             width: 50%;
             padding: 20px;
@@ -92,7 +62,7 @@ if (isset($_POST['submit'])) {
 
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             color: #A7A1AE;
         }
 
@@ -103,8 +73,8 @@ if (isset($_POST['submit'])) {
         select[id="ClientNumber"],
         select[id="condition_at_purchase"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 8px;
+            margin-bottom: 10px;
             border: 2px solid #4DC3FA;
             /* Blue border */
             border-radius: 5px;
@@ -128,6 +98,7 @@ if (isset($_POST['submit'])) {
         }
 
         input[type="submit"] {
+            margin-top: 15px;
             background-color: #FFF842;
             color: #403E10;
             font-weight: bold;
@@ -143,13 +114,13 @@ if (isset($_POST['submit'])) {
 
         a[href*="purchases.php"] {
             display: inline-block;
-            padding: 5px 20px;
+            padding: 10px 20px;
             margin: 0 10px;
             background-color: #185875;
             /* Blue accent to match table headings */
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
@@ -160,29 +131,85 @@ if (isset($_POST['submit'])) {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             /* Pink hover effect to match table details */
         }
+
+        @media (max-width: 768px) {
+            form {
+                width: 95%;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
+<?php
+include("database.php");
+include("nav.php");
+//------------------------------------------------------------------
+if (isset($_POST['submit'])) {
+    $clientNumber = trim($_POST['ClientNumber']);
+
+    if (empty($clientNumber)) {
+        echo "<script>alert('Please select a client.'); window.location='purchases.php';</script>";
+        exit;
+    }
+
+    //------------------------------------------------------------------
+    $sql = "SELECT * FROM allclients WHERE ClientNumber = '$clientNumber'";
+    $query = mysqli_query($conn, $sql);
+
+    if ($query && mysqli_num_rows($query) > 0) {
+        $clientData = mysqli_fetch_assoc($query);
+    } else {
+        echo "<script>alert('Client not found.'); window.location='purchases.php';</script>";
+        exit;
+    }
+
+    //------------------------------------------------------------------
+    $asking_price = $_POST['asking_price'];
+    $item_type = $_POST['item_type'];
+    $description = $_POST['description'];
+    $critiqued_comments = $_POST['critiqued_comments'];
+    $condition_at_purchase = $_POST['condition_at_purchase'];
+
+
+    $insertItemSql = "INSERT INTO items (asking_price, item_type, description, critiqued_comments, `condition`) 
+                      VALUES ('$asking_price', '$item_type', '$description', '$critiqued_comments', '$condition_at_purchase')";
+    if (mysqli_query($conn, $insertItemSql)) {
+        $itemNumber = mysqli_insert_id($conn);
+
+        //------------------------------------------------------------------
+        $p_cost = $_POST['p_cost'];
+
+        $insertPurchaseSql = "INSERT INTO purchases (p_cost, condition_at_purchase, ClientNumber, item_num) 
+                              VALUES ('$p_cost', '$condition_at_purchase', '$clientNumber', '$itemNumber')";
+        if (mysqli_query($conn, $insertPurchaseSql)) {
+            echo "<script>alert('Client, Purchase, and Item have been added successfully.'); window.location='purchases.php';</script>";
+        } else {
+            echo "<script>alert('Failed to add Purchase: " . mysqli_error($conn) . "'); window.location='purchases.php';</script>";
+        }
+    } else {
+        echo "<script>alert('Failed to add Item: " . mysqli_error($conn) . "'); window.location='purchases.php';</script>";
+    }
+}
+?>
 
 <body>
-    <br><br>
-    <h1>&lt;Record a Purchase from <span style="color: yellow">Existing Client</span>&gt;</h2>
+    <br><br><br><br><br><br>
+    <form action="" method="POST">
+        <a href="purchases.php">Back</a>
         <br>
-        <form action="" method="POST">
-            <a href="purchases.php">Back</a>
-            <br>
-            <h2>Client Information</h2>
-            <label for="ClientNumber">Select Existing Client/s:</label>
-            <select id="ClientNumber" name="ClientNumber" required>
-                <option value="" align="center">-- PLEASE SELECT A CLIENT --</option>
-                <?php
-                $client_sql = "SELECT ClientNumber, givenName, lastName FROM allclients";
-                $client_query = mysqli_query($conn, $client_sql);
-                while ($row = mysqli_fetch_assoc($client_query)) {
-                    echo "<option value='" . $row['ClientNumber'] . "'>" . $row['givenName'] . " " . $row['lastName'] . "</option>";
-                }
-                ?>
-            </select>
-            <!--
+        <h2>Client Info:</h2>
+        <label for="ClientNumber">Select Existing Client/s:</label>
+        <select id="ClientNumber" name="ClientNumber" required>
+            <option value="" align="center">-- PLEASE SELECT A CLIENT --</option>
+            <?php
+            $client_sql = "SELECT ClientNumber, givenName, lastName FROM allclients";
+            $client_query = mysqli_query($conn, $client_sql);
+            while ($row = mysqli_fetch_assoc($client_query)) {
+                echo "<option value='" . $row['ClientNumber'] . "'>" . $row['givenName'] . " " . $row['lastName'] . "</option>";
+            }
+            ?>
+        </select>
+        <!--
             <div id="new_client_fields">
                 <label for="lastName">Last Name:</label>
                 <input type="text" id="lastName" name="lastName" required>
@@ -194,38 +221,38 @@ if (isset($_POST['submit'])) {
                 <input type="text" id="ClientAddress" name="ClientAddress" required>
                 </div>
                 -->
-            <hr>
-            <!-- Form -->
-            <h2>Purchase Information</h2>
-            <label for="p_cost">Purchase Cost:</label>
-            <input type="number" name="p_cost" required>
+        <hr>
+        <!-- Form -->
+        <h2>Purchase Info:</h2>
+        <label for="p_cost">Purchase Cost:</label>
+        <input type="number" name="p_cost" required>
 
-            <label for="condition_at_purchase">Condition:</label>
-            <select name="condition_at_purchase" id="condition_at_purchase">
-                <option value="" align="center">-- SELECT ITEM'S CONDITION --</option>
-                <option value="Excellent" align="center" style="color: Gold;">Excellent</option>
-                <option value="Good" align="center" style="color: greenyellow;">Good</option>
-                <option value="Fair" align="center" style="color: Orange;">Fair</option>
-                <option value="Bad" align="center" style="color: red;">Bad</option>
-            </select>
-            
-            <hr>
+        <label for="condition_at_purchase">Condition:</label>
+        <select name="condition_at_purchase" id="condition_at_purchase">
+            <option value="" align="center">-- SELECT ITEM'S CONDITION --</option>
+            <option value="Excellent" align="center" style="color: Gold;">Excellent</option>
+            <option value="Good" align="center" style="color: greenyellow;">Good</option>
+            <option value="Fair" align="center" style="color: Orange;">Fair</option>
+            <option value="Bad" align="center" style="color: red;">Bad</option>
+        </select>
 
-            <h2>Item Information</h2>
-            <label for="asking_price">Asking Price:</label>
-            <input type="number" name="asking_price" required>
+        <hr>
 
-            <label for="item_type">Item Type:</label>
-            <input type="text" name="item_type" required>
+        <h2>Item Info:</h2>
+        <label for="asking_price">Asking Price:</label>
+        <input type="number" name="asking_price" required>
 
-            <label for="description">Description:</label>
-            <input type="text" name="description" required>
+        <label for="item_type">Item Type:</label>
+        <input type="text" name="item_type" required>
 
-            <label for="critiqued_comments">Critiqued Comments:</label>
-            <input type="text" name="critiqued_comments" required>
+        <label for="description">Description:</label>
+        <input type="text" name="description" required>
 
-            <input type="submit" name="submit" value="Add Record">
-        </form>
+        <label for="critiqued_comments">Critiqued Comments:</label>
+        <input type="text" name="critiqued_comments" required>
+
+        <input type="submit" name="submit" value="Add Record">
+    </form>
 </body>
 
 </html>

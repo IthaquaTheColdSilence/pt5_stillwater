@@ -12,7 +12,7 @@
     background-color: #185875; /* Blue accent to match table headings */
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 ::-webkit-scrollbar {
@@ -76,7 +76,7 @@ h2 a {
 
 .container {
     text-align: left;
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
     display: table;
     padding: 0 0 8em 0;

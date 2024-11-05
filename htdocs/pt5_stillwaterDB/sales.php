@@ -51,35 +51,35 @@
         display: table;
         padding: 0 0 8em 0;
     }
+
+    .container td:first-child {
+        color: #FB667A;
+    }
 </style>
 
 <?php
 include("nav.php");
 include("database.php");
 
-$sql = "
-    SELECT 
-        date_sold, 
-        sellingPrice, 
-        commissionPaid, 
-        saleID, 
-        ClientNumber,
-        (SELECT givenName FROM allclients WHERE ClientNumber = sales.ClientNumber) AS givenName,
-        (SELECT lastName FROM allclients WHERE ClientNumber = sales.ClientNumber) AS lastName,
-        item_num,
-        (SELECT description FROM items WHERE item_num = sales.item_num) AS description
-    FROM sales
-    ORDER BY date_sold ASC
-";
+$sql = "SELECT 
+    s.date_sold, 
+    s.sellingPrice, 
+    s.commissionPaid, 
+    s.saleID, s.ClientNumber, 
+    c.givenName, 
+    c.lastName, 
+    s.item_num, 
+    i.description
+FROM sales s
+INNER JOIN allclients c ON s.ClientNumber = c.ClientNumber
+INNER JOIN items i ON s.item_num = i.item_num
+ORDER BY s.date_sold ASC;";
 
 $query = mysqli_query($conn, $sql);
 
 if (!$query) {
     echo "Error: " . mysqli_error($conn);
 }
-
-date_default_timezone_set("Manila/Philippines");
-
 ?>
 
 <body>
@@ -116,11 +116,11 @@ date_default_timezone_set("Manila/Philippines");
                 $salesTax = $result['sellingPrice'] !== null ? $result['sellingPrice'] * 0.12 : 0;
                 $formatSalesTax = number_format($salesTax, 2); // format sales tax
 
-                $dateSold = !empty($result['date_sold']) ? date("F d, Y -- h:i:s A", strtotime($result['date_sold'])) : '&nbsp;';
+                $dateSold = !empty($result['date_sold']) ? date("F d, Y", strtotime($result['date_sold'])) : 'N/A';
             ?>
                 <tr>
                     <td><?php echo $dateSold; ?></td>
-                    <td><?php echo $givenName . ' ' . $lastName; ?></td>
+                    <td ><?php echo $givenName . ' ' . $lastName; ?></td>
                     <td><?php echo $description; ?></td>
                     <td>₱ <?php echo $sellingPrice; ?></td>
                     <td>₱ <?php echo $commission; ?></td>

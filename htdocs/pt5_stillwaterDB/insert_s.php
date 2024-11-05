@@ -116,14 +116,12 @@ include("database.php");
     <input type="submit" name="submit" value="Submit">
 </form>
 
-<script>
-    //AI SCRIPT, HEHE----------------------------------------------------
+<script>-
     function calculateSalesTax() {
         var sellingPrice = document.getElementById("sellingPrice").value;
         var salesTax = sellingPrice * 0.12;
         document.getElementById("salesTax").value = salesTax.toFixed(2);
     }
-    //--------------------------------------------------------------------
 </script>
 
 <?php
