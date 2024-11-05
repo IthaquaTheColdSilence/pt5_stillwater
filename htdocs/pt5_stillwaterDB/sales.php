@@ -1,3 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Record</title>
+</head>
+<link rel="stylesheet" href="css/style.css">
+<style>
+    .td a[href*="update_s.php"] {
+        display: inline-block;
+        padding: 5px 15px;
+        margin: 0 10px;
+        background-color: #185875;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .td a[href*="update_s.php"]:hover {
+        background-color: #72BF78;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .td a[href*="sales.php?action=delete"] {
+        display: inline-block;
+        padding: 5px 15px;
+        margin: 0 10px;
+        background-color: #185875;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .td a[href*="sales.php?action=delete"]:hover {
+        background-color: #FB667A;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+        text-align: left;
+        width: 90%;
+        margin: 0 auto;
+        display: table;
+        padding: 0 0 8em 0;
+    }
+</style>
+
 <?php
 include("nav.php");
 include("database.php");
@@ -22,54 +77,10 @@ $query = mysqli_query($conn, $sql);
 if (!$query) {
     echo "Error: " . mysqli_error($conn);
 }
+
+date_default_timezone_set("Manila/Philippines");
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Record</title>
-</head>
-<style>
-    .td a[href*="update_s.php"] {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 0 10px;
-        background-color: #185875;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .td a[href*="update_s.php"]:hover {
-        background-color: #72BF78;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .td a[href*="sales.php?action=delete"] {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 0 10px;
-        background-color: #185875;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .td a[href*="sales.php?action=delete"]:hover {
-        background-color: #FB667A;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-</style>
-<link rel="stylesheet" href="css/style.css">
 
 <body>
     <br><br>
@@ -81,7 +92,7 @@ if (!$query) {
                 <th class="th"><a href="insert_s.php">Add Sales Record</a></th>
             </tr>
             <tr>
-                <th>Date Sold</th>
+                <th align="center">Date Sold</th>
                 <th>Item's Owner</th>
                 <th>Item Description</th>
                 <th>Selling Price</th>
@@ -98,14 +109,14 @@ if (!$query) {
                 $description = $result['description'];
                 $lastName = $result['lastName'];
                 $givenName = $result['givenName'];
-                
+
                 $sellingPrice = $result['sellingPrice'] !== null ? number_format($result['sellingPrice'], 2) : ' 0.00';
                 $commission = $result['commissionPaid'] !== null ? number_format($result['commissionPaid'], 2) : ' 0.00';
 
                 $salesTax = $result['sellingPrice'] !== null ? $result['sellingPrice'] * 0.12 : 0;
                 $formatSalesTax = number_format($salesTax, 2); // format sales tax
 
-                $dateSold = !empty($result['date_sold']) ? date("F d, Y", strtotime($result['date_sold'])) : '&nbsp;';
+                $dateSold = !empty($result['date_sold']) ? date("F d, Y -- h:i:s A", strtotime($result['date_sold'])) : '&nbsp;';
             ?>
                 <tr>
                     <td><?php echo $dateSold; ?></td>

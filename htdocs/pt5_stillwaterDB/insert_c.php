@@ -1,5 +1,6 @@
 <?php
 include("database.php");
+include("nav.php")
 ?>
 <style>
     body {
@@ -92,7 +93,7 @@ include("database.php");
 
     a[href*="c_list.php"] {
         display: inline-block;
-        padding: 5px 20px;
+        padding: 10px 20px;
         margin: 0 10px;
         background-color: #185875;
         /* Blue accent to match table headings */
@@ -113,7 +114,7 @@ include("database.php");
 <h2>&lt;Add Client&gt;</h2>
 <br>
 <form action="insert_c.php" method="post">
-    <a href="c_list.php">Back</a>
+    <a href="c_list.php"><b>Back</b></a>
     <br><br>
 
     <label for="lastName">Last Name:</label>

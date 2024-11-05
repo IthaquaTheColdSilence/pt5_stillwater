@@ -1,29 +1,27 @@
-<?php
+<?php 
 include("database.php");
 
 if (isset($_POST['submit'])) {
+    
+    // Retrieve ClientNumber from POST request and trim it
     $clientNumber = trim($_POST['ClientNumber']);
-    $givenName = trim($_POST['givenName']);
-    $lastName = trim($_POST['lastName']);
-    $ClientAddress = trim($_POST['ClientAddress']);
+    
+    // If ClientNumber is not set, we should handle it accordingly
+    if (empty($clientNumber)) {
+        echo "<script>alert('Please select a client.'); window.location='purchases.php';</script>";
+        exit;
+    }
 
     // Check if the client already exists
-    $sql = "SELECT * FROM allclients WHERE givenName = '$givenName' AND lastName = '$lastName'";
+    $sql = "SELECT * FROM allclients WHERE ClientNumber = '$clientNumber'";
     $query = mysqli_query($conn, $sql);
 
     if ($query && mysqli_num_rows($query) > 0) {
         $clientData = mysqli_fetch_assoc($query);
-        $clientNumber = $clientData['ClientNumber'];
+        // Now you can use $clientData['givenName'], $clientData['lastName'], etc., if needed
     } else {
-        // Insert a new client
-        $sql = "INSERT INTO allclients (givenName, lastName, ClientAddress) 
-                VALUES ('$givenName', '$lastName', '$ClientAddress')";
-        if (mysqli_query($conn, $sql)) {
-            $clientNumber = mysqli_insert_id($conn);
-        } else {
-            echo "Error: " . mysqli_error($conn);
-            exit;
-        }
+        echo "<script>alert('Client not found.'); window.location='purchases.php';</script>";
+        exit;
     }
 
     // Item information
@@ -39,13 +37,11 @@ if (isset($_POST['submit'])) {
     if (mysqli_query($conn, $insertItemSql)) {
         $itemNumber = mysqli_insert_id($conn);
 
-        // Purchase information
-        $p_date = $_POST['p_date'];
         $p_cost = $_POST['p_cost'];
 
         // Insert the purchase record
-        $insertPurchaseSql = "INSERT INTO purchases (p_date, p_cost, condition_at_purchase, ClientNumber, item_num) 
-                              VALUES ('$p_date', '$p_cost', '$condition_at_purchase', '$clientNumber', '$itemNumber')";
+        $insertPurchaseSql = "INSERT INTO purchases (p_cost, condition_at_purchase, ClientNumber, item_num) 
+                              VALUES ('$p_cost', '$condition_at_purchase', '$clientNumber', '$itemNumber')";
         if (mysqli_query($conn, $insertPurchaseSql)) {
             echo "<script>alert('Client, Purchase, and Item have been added successfully.'); window.location='purchases.php';</script>";
         } else {
@@ -56,7 +52,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -213,10 +208,7 @@ if (isset($_POST['submit'])) {
                 <option value="Fair" align="center" style="color: Orange;">Fair</option>
                 <option value="Bad" align="center" style="color: red;">Bad</option>
             </select>
-
-            <label for="p_date">Date Purchased:</label>
-            <input type="datetime-local" name="p_date" required>
-
+            
             <hr>
 
             <h2>Item Information</h2>

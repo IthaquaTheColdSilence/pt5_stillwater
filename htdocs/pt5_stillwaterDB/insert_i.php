@@ -1,5 +1,6 @@
 <?php
 include("database.php");
+include("nav.php");
 ?>
 <style>
   body {
@@ -97,7 +98,7 @@ include("database.php");
 
   a[href*="items.php"] {
     display: inline-block;
-    padding: 5px 20px;
+    padding: 10px 20px;
     margin: 0 10px;
     background-color: #185875;
     /* Blue accent to match table headings */
@@ -115,11 +116,11 @@ include("database.php");
     /* Pink hover effect to match table details */
   }
 </style>
-<br><br>
+<br><br><br><br><br><br>
 <h2>&lt;Add Item&gt;</h2>
 <br>
 <form action="insert_i.php" method="post">
-  <a href="items.php">Back</a>
+  <a href="items.php"><b>Back</b></a>
   <br><br>
 
   <label for="condition">Condition:</label>

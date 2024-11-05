@@ -89,7 +89,7 @@ if (!$query) {
     <br><br><br><br><br><br>
     <table class="container">
         <tr>
-            <th class="th" width="17%"><a href="insert_c.php">Insert Client</a></th>
+            <th class="th" width="17%"><a href="insert_i.php">Insert Client</a></th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
@@ -136,7 +136,7 @@ if (!$query) {
                     <td><span style="color: #FB667A"><?php echo $result['item_num']; ?></span></td>
                     <td align="center" width="20%" class="td">
                         <a href='update_i.php?action=edit&item_num=<?php echo $result["item_num"]; ?>'>Edit</a>
-                        <a href='items.php?action=delete&item_num=<?php echo $result["item_num"]; ?>' onclick="return confirm('Are you sure you want to mark this item as sold?');">Delete</a>
+                        <a href='items.php?action=delete&item_num=<?php echo $result["item_num"]; ?>' onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                     </td>
                 </tr>
             <?php } ?>
@@ -148,11 +148,11 @@ if (!$query) {
 
             if ($action == 'delete') {
                 // Mark item as sold instead of deleting it
-                $sql = "UPDATE items SET is_sold = 1 WHERE item_num = '$item_num'";
+                $sql = "DELETE FROM items WHERE item_num = '$item_num'";
                 if (mysqli_query($conn, $sql)) {
-                    echo "<script>alert('Item has been marked as sold.'); window.location='items.php';</script>";
+                    echo "<script>alert('Deletion is successful.'); window.location='items.php';</script>";
                 } else {
-                    echo "<script>alert('Failed to update the item status.'); window.location='items.php';</script>";
+                    echo "<script>alert('Failed to delete the item.'); window.location='items.php';</script>";
                 }
             }
         }

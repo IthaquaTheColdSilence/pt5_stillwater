@@ -84,10 +84,10 @@ include("database.php");
     <select id="item_num" name="item_num" required>
         <option value="">Select an Item</option>
         <?php
-        $item_sql = "SELECT item_num FROM items WHERE is_sold = 0";
+        $item_sql = "SELECT item_num, `description` FROM items WHERE is_sold = 0";
         $item_query = mysqli_query($conn, $item_sql);
         while ($row = mysqli_fetch_assoc($item_query)) {
-            echo "<option value='" . $row['item_num'] . "'>" . $row['item_num'] . "</option>";
+            echo "<option value='" . $row['item_num'] . "'>" . $row['description'] . "</option>";
         }
         ?>
     </select><br>
@@ -113,9 +113,6 @@ include("database.php");
     <label for="salesTax">Sales Tax (12%):</label>
     <input type="number" id="salesTax" name="salesTax" readonly><br>
 
-    <label for="date_sold">Date Sold:</label>
-    <input type="date" id="date_sold" name="date_sold" required><br>
-
     <input type="submit" name="submit" value="Submit">
 </form>
 
@@ -136,12 +133,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $clientNumber = $_POST['ClientNumber'] ?: null;
     $itemNum = $_POST['item_num'];
     $salesTax = $_POST['salesTax'];
-    $date_sold = $_POST['date_sold'];
 
-    $sql = "INSERT INTO sales (sellingPrice, commissionPaid, salesTax, ClientNumber, item_num, date_sold) 
+    $sql = "INSERT INTO sales (sellingPrice, commissionPaid, salesTax, ClientNumber, item_num) 
             VALUES ('$sellingPrice', " . ($commissionPaid !== null ? "'$commissionPaid'" : "NULL") . ", 
             '$salesTax', " . ($clientNumber !== null ? "'$clientNumber'" : "NULL") . ", 
-            '$itemNum', '$date_sold')";
+            '$itemNum')";
 
     if (mysqli_query($conn, $sql)) {
         $update_item_sql = "UPDATE items SET is_sold = 1 WHERE item_num = '$itemNum'";

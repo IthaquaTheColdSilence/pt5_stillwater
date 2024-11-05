@@ -1,23 +1,12 @@
-<?php
-include("nav.php");
-include("database.php");
-
-$sql = "SELECT * FROM purchases ORDER BY p_date DESC";
-
-$query = mysqli_query($conn, $sql);
-
-if (!$query) {
-    echo "Error: " . mysqli_error($conn);
-}
-?>
 </head>
 <title>Purchase Record</title>
 
 <body>
+<link rel="stylesheet" href="css/style.css">
     <style>
         .td a[href*="update_p.php"] {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 5px 15px;
             margin: 0 10px;
             background-color: #185875;
             /* Blue accent to match table headings */
@@ -37,7 +26,7 @@ if (!$query) {
 
         .td a[href*="purchases.php?action=delete"] {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 5px 15px;
             margin: 0 10px;
             background-color: #185875;
             /* Blue accent to match table headings */
@@ -92,18 +81,30 @@ if (!$query) {
             color: #FB667A;
         }
     </style>
-    <link rel="stylesheet" href="css/style.css">
-    <br>
-    <br>
-    <h1><span class="blue"></span>Stillwater<span class="blue"></span> <span class="yellow">Antique</span> Database</h1>
+    <?php
+include("nav.php");
+include("database.php");
+
+$sql = "SELECT * FROM purchases ORDER BY p_date DESC";
+
+$query = mysqli_query($conn, $sql);
+
+if (!$query) {
+    echo "Error: " . mysqli_error($conn);
+}
+?>
+    <br><br><br><br><br><br>
     <table class="container">
         <tbody>
             <tr>
-                <th colspan="5">Stillwater Antique Purchases Record</th>
-                <th></th>
-                <th class="th">
-                    <a href="insert_p.php">Add Record</a>
-                </th>
+            <th class="th" width="17%"><a href="insert_p.php">Add Record</a></th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th align="center">Stillwater Purchase Record</th>
+            </th>
             </tr>
             <tr align="center">
                 <th>Date Purchased</th>
@@ -116,7 +117,7 @@ if (!$query) {
             </tr>
         <tbody align="center">
             <?php
-            date_default_timezone_set("Asia/Manila");
+
             while ($result = mysqli_fetch_assoc($query)) {
                 $formatCost = number_format($result['p_cost']);
                 $datePurchased = !empty($result['p_date']) ? date("F j, Y -- g:i:s a", strtotime($result['p_date'])) : 'N/A';
