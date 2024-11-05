@@ -1,5 +1,6 @@
 <?php
 include("database.php");
+include("nav.php");
 
 $clientNumber = $_GET['ClientNumber'];
 
@@ -86,13 +87,13 @@ if (!$clientData) {
 
   a[href*="c_list.php"] {
     display: inline-block;
-    padding: 5px 20px;
+    padding: 10px 15px;
     margin: 0 10px;
     background-color: #185875;
     /* Blue accent to match table headings */
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
@@ -104,9 +105,7 @@ if (!$clientData) {
     /* Pink hover effect to match table details */
   }
 </style>
-
-<h2>&lt;Update Client's Information&gt;</h2>
-<br>
+<br><br><br><br><br><br>
 <form action="update_c.php?ClientNumber=<?php echo $clientNumber; ?>" method="post">
 <a href="c_list.php">Back</a>
 <br><br>

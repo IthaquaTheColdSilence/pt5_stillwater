@@ -89,7 +89,7 @@ if (!$query) {
     <table class="container">
         <thead>
         <tr>
-            <th class="th" colspan="6"><a href="insert_i.php">Insert Client</a></th>
+            <th class="th" colspan="6"><a href="insert_i.php">Insert Item</a></th>
             <th align="right">Stillwater Items List</th>
         </tr>
         <tr align="center">

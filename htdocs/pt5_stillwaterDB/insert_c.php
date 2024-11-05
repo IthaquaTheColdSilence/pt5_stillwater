@@ -135,8 +135,7 @@ include("nav.php")
             }
         }
 </style>
-<h2>&lt;Add Client&gt;</h2>
-<br>
+<br><br><br><br><br><br>
 <form action="insert_c.php" method="post">
     <a href="c_list.php"><b>Back</b></a>
     <br><br>
@@ -171,7 +170,7 @@ if (isset($_POST['submit'])) {
             $sql = "INSERT INTO allclients (givenName, lastName, ClientAddress) VALUES ('$givenName', '$lastName', '$ClientAddress')";
             if (mysqli_query($conn, $sql)) {
                 $clientNumber = mysqli_insert_id($conn);
-                echo "Client list Updated with ClientNumber: $clientNumber";
+                echo "<br>Client Added Successfully";
                 return $clientNumber;
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);

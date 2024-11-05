@@ -1,5 +1,6 @@
 <?php
 include("database.php");
+include("nav.php");
 
 $item_num = $_GET['item_num'];
 
@@ -101,13 +102,13 @@ if (!$itemData) {
 
     a[href*="items.php"] {
         display: inline-block;
-        padding: 5px 20px;
+        padding: 10px 15px;
         margin: 0 10px;
         background-color: #185875;
         /* Blue accent to match table headings */
         color: white;
         text-decoration: none;
-        border-radius: 5px;
+        border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
@@ -119,9 +120,7 @@ if (!$itemData) {
         /* Pink hover effect to match table details */
     }
 </style>
-<br><br>
-<h2>&lt;Update Item's Description&gt;</h2>
-<br>
+<br><br><br><br><br><br>
 <form action="update_i.php?item_num=<?php echo $item_num; ?>" method="post">
     <a href="items.php">Back</a>
     <br><br>

@@ -102,7 +102,7 @@
             </tr>
             <tr align="center">
                 <th width="150px">Date Purchased</th>
-                <th width="150px">Client</th>
+                <th width="150px">Sold by</th>
                 <th width="150px">Item</th>
                 <th width="50px">Item Condition</th>
                 <th width="80px">Purchase Cost</th>
@@ -131,7 +131,7 @@
                         break;
                 }
 
-                $p_date = !empty($result['p_date']) ? date("F d, Y", strtotime($result['p_date'])) : 'N/A';
+                $p_date = !empty($result['p_date']) ? date("M d, Y -- g:i A", strtotime($result['p_date'])) : 'N/A';
             ?>
                 <tr align="center">
                     <td><?php echo $p_date; ?></td>

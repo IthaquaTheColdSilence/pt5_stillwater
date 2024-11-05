@@ -1,6 +1,7 @@
 <?php
 include("nav.php");
 include("database.php");
+include("datetime.php");
 ?>
 
 <title>Add Sales Record</title>
@@ -75,9 +76,7 @@ include("database.php");
     }
 </style>
 <link rel="stylesheet" href="css/style.css">
-<br><br>
-<h2>&lt;Record a Sold Item&gt;</h2>
-<br>
+<br><br><br><br><br><br>
 <form action="insert_s.php" method="post">
 
     <label for="item_num">Item:</label>
@@ -92,9 +91,12 @@ include("database.php");
         ?>
     </select><br>
 
-    <label for="ClientNumber">Client:</label>
+    <label for="sellingPrice">Selling Price:</label>
+    <input type="number" id="sellingPrice" name="sellingPrice" required oninput="calculateSalesTax()"><br>
+
+    <label for="ClientNumber">Called Client: (Optional)</label>
     <select id="ClientNumber" name="ClientNumber">
-        <option value="">Select a Client (Optional)</option>
+        <option value="">-- SELECT A CLIENT --</option>
         <?php
         $client_sql = "SELECT ClientNumber, givenName, lastName FROM allclients";
         $client_query = mysqli_query($conn, $client_sql);
@@ -103,9 +105,6 @@ include("database.php");
         }
         ?>
     </select><br>
-
-    <label for="sellingPrice">Selling Price:</label>
-    <input type="number" id="sellingPrice" name="sellingPrice" required oninput="calculateSalesTax()"><br>
 
     <label for="commissionPaid">Commission Paid (Optional):</label>
     <input type="number" id="commissionPaid" name="commissionPaid"><br>
@@ -116,7 +115,7 @@ include("database.php");
     <input type="submit" name="submit" value="Submit">
 </form>
 
-<script>-
+<script>
     function calculateSalesTax() {
         var sellingPrice = document.getElementById("sellingPrice").value;
         var salesTax = sellingPrice * 0.12;
@@ -132,10 +131,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $itemNum = $_POST['item_num'];
     $salesTax = $_POST['salesTax'];
 
-    $sql = "INSERT INTO sales (sellingPrice, commissionPaid, salesTax, ClientNumber, item_num) 
+    $currentTimeStamp = getCurrentDateTime();
+
+    $sql = "INSERT INTO sales (sellingPrice, commissionPaid, salesTax, ClientNumber, item_num, date_sold) 
             VALUES ('$sellingPrice', " . ($commissionPaid !== null ? "'$commissionPaid'" : "NULL") . ", 
             '$salesTax', " . ($clientNumber !== null ? "'$clientNumber'" : "NULL") . ", 
-            '$itemNum')";
+            '$itemNum', '$currentTimeStamp')";
 
     if (mysqli_query($conn, $sql)) {
         $update_item_sql = "UPDATE items SET is_sold = 1 WHERE item_num = '$itemNum'";

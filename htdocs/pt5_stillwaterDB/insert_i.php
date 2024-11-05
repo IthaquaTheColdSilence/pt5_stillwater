@@ -136,7 +136,6 @@ include("nav.php");
         }
 </style>
 <br><br><br><br><br><br>
-<br>
 <form action="insert_i.php" method="post">
   <a href="items.php"><b>Back</b></a>
   <br><br>
@@ -183,7 +182,7 @@ if (isset($_POST['submit'])) {
       $sql = "INSERT INTO items (`condition`, item_type, asking_price, description, critiqued_comments) 
                   VALUES ('$condition', '$item_type', '$asking_price', '$description', '$comments')";
       if (mysqli_query($conn, $sql)) {
-        echo "Item list Updated";
+        echo "<br>Item Added Successfully";
       } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
       }
