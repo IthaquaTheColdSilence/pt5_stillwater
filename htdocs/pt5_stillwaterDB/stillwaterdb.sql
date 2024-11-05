@@ -17,36 +17,27 @@ CREATE TABLE `allclients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `allclients` (`ClientNumber`, `givenName`, `ClientAddress`, `lastName`) VALUES
-(1,	'John Smith',	'123 Main Street, Apt. 4B, Anytown, USA',	'Albercarky'),
-(2,	'Casandra Nova',	'456 Oak Avenue, Anytown, USA',	'Pinewood'),
-(3,	'Bob Indra',	'789 Willow Lane, Ruralville, USA',	'Bolyfood'),
-(4,	'Nova Stark',	'P.O. Box 123, Anytown, USA',	'Tresance'),
-(5,	'Elmochio Minoi',	'Suite 101, 123 Business Boulevard, Anytown, USA',	'Baraka'),
-(6,	'Gruth Makvin',	'456 Industrial Park Drive, Anytown, USA',	'Cape Neddick'),
-(7,	'Katelyn Mcintyre',	'789 Main Street, Anytown, USA',	'Serra'),
-(8,	'Bethan Sanford',	'123 School Road, Anytown, USA',	'Faulkton'),
-(9,	'Lloyd Davies',	'456 Government Center, Anytown, USA',	'Suditi'),
-(10,	'Saarah Cruz',	'123 Base Road, Anytown, USA',	'Chatfield'),
-(15,	'John',	'123 Elm St, Springfield, IL',	'Doe'),
-(16,	'Jane',	'456 Oak St, Springfield, IL',	'Smith'),
-(17,	'Michael',	'789 Pine St, Springfield, IL',	'Johnson'),
-(18,	'Emily',	'101 Maple St, Springfield, IL',	'Davis'),
-(19,	'James',	'202 Birch St, Springfield, IL',	'Brown'),
-(20,	'Mary',	'303 Cedar St, Springfield, IL',	'Garcia'),
-(21,	'Robert',	'404 Walnut St, Springfield, IL',	'Martinez'),
-(22,	'Linda',	'505 Cherry St, Springfield, IL',	'Hernandez'),
-(23,	'William',	'606 Ash St, Springfield, IL',	'Lopez'),
-(24,	'Elizabeth',	'707 Spruce St, Springfield, IL',	'Wilson'),
-(25,	'David',	'808 Fir St, Springfield, IL',	'Anderson'),
-(26,	'Susan',	'909 Hickory St, Springfield, IL',	'Thomas'),
-(27,	'Charles',	'111 Sycamore St, Springfield, IL',	'Taylor'),
-(28,	'Jessica',	'222 Dogwood St, Springfield, IL',	'Moore'),
-(29,	'Daniel',	'333 Larch St, Springfield, IL',	'Jackson'),
-(30,	'Sarah',	'444 Redwood St, Springfield, IL',	'Martin'),
-(31,	'Matthew',	'555 Poplar St, Springfield, IL',	'Lee'),
-(32,	'Nancy',	'666 Willow St, Springfield, IL',	'Perez'),
-(33,	'Anthony',	'777 Elm St, Springfield, IL',	'Thompson'),
-(34,	'Karen',	'888 Oak St, Springfield, IL',	'White');
+(3,	'John',	'123 Apple St, Toronto',	'Smith'),
+(4,	'Emma',	'456 Maple Ave, Vancouver',	'Johnson'),
+(5,	'Michael',	'789 Oak Rd, Montreal',	'Williams'),
+(6,	'Sarah',	'321 Pine Lane, Calgary',	'Brown'),
+(7,	'David',	'654 Cedar Blvd, Ottawa',	'Jones'),
+(8,	'Lisa',	'987 Birch Way, Edmonton',	'Garcia'),
+(9,	'James',	'147 Elm St, Victoria',	'Miller'),
+(10,	'Jennifer',	'258 Spruce Ave, Halifax',	'Davis'),
+(11,	'Robert',	'369 Willow Rd, Regina',	'Rodriguez'),
+(12,	'Maria',	'741 Fir Lane, Winnipeg',	'Martinez'),
+(13,	'William',	'852 Ash St, Quebec City',	'Anderson'),
+(14,	'Patricia',	'963 Poplar Ave, Hamilton',	'Taylor'),
+(15,	'Richard',	'159 Maple Dr, Surrey',	'Thomas'),
+(16,	'Linda',	'753 Oak Circle, London',	'Moore'),
+(17,	'Joseph',	'951 Pine Court, Saskatoon',	'Jackson'),
+(18,	'Elizabeth',	'357 Cedar Path, St. Johns',	'White'),
+(19,	'Thomas',	'486 Birch Road, Kingston',	'Harris'),
+(20,	'Margaret',	'264 Spruce Lane, Kelowna',	'Martin'),
+(21,	'Charles',	'159 Willow Ave, Gatineau',	'Thompson'),
+(22,	'Sandra',	'753 Elm Court, Guelph',	'Lee'),
+(23,	'Cyril Jay',	'Suarez',	'Acope');
 
 DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
@@ -61,44 +52,40 @@ CREATE TABLE `items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `items` (`item_num`, `description`, `asking_price`, `critiqued_comments`, `condition`, `item_type`, `is_sold`) VALUES
-(1,	'Baroque Armchair',	3200,	'Rich detailing newly polished',	'Excellent',	'Furniture',	0),
-(2,	'Queen Anne Dining Table',	3500,	'Stunning centerpiece minor scratches',	'Good',	'Furniture',	0),
-(3,	'Victorian Oak Chair',	1200,	'Beautifully carved with minimal wear',	'Good',	'Furniture',	0),
-(4,	'Chippendale Chest',	2200,	'Original handles some fading',	'Good',	'Furniture',	0),
-(5,	'Rococo Side Table',	1300,	'Ornate carvings minor nicks',	'Fair',	'Furniture',	0),
-(6,	'Victorian Mahogany Cabinet',	2700,	'Intricate inlays slight wear on edges',	'Good',	'Furniture',	0),
-(7,	'Art Deco Lamp',	750,	'Vintage style slight discoloration',	'Fair',	'Home Decor',	0),
-(8,	'Mid-century Modern Chair',	950,	'Iconic design fabric slightly worn',	'Good',	'Furniture',	0),
-(9,	'Georgian Mirror',	1800,	'Gilt frame with aged patina',	'Good',	'Decor',	0),
-(15,	'Baroque Armchair',	3200,	'Rich detailing newly polished',	'Excellent',	'Furniture',	0),
-(16,	'Queen Anne Dining Table',	3500,	'Stunning centerpiece minor scratches',	'Good',	'Furniture',	0),
-(17,	'Victorian Oak Chair',	1200,	'Beautifully carved with minimal wear',	'Good',	'Furniture',	0),
-(18,	'Chippendale Chest',	2200,	'Original handles some fading',	'Good',	'Furniture',	0),
-(19,	'Rococo Side Table',	1300,	'Ornate carvings minor nicks',	'Fair',	'Furniture',	0),
-(20,	'Victorian Mahogany Cabinet',	2700,	'Intricate inlays slight wear on edges',	'Good',	'Furniture',	0),
-(21,	'Art Deco Lamp',	750,	'Vintage style slight discoloration',	'Fair',	'Home Decor',	0),
-(22,	'Mid-century Modern Chair',	950,	'Iconic design fabric slightly worn',	'Good',	'Furniture',	0),
-(23,	'Georgian Mirror',	1800,	'Gilt frame with aged patina',	'Good',	'Decor',	0),
-(24,	'Antique Writing Desk',	1500,	'Beautifully restored with original hardware',	'Excellent',	'Furniture',	0),
-(25,	'Industrial Bookshelf',	800,	'Sturdy metal frame with wooden shelves',	'Good',	'Furniture',	0),
-(26,	'Vintage Record Player',	600,	'Fully functional with minor scratches',	'Good',	'Electronics',	0),
-(27,	'Ceramic Vase',	200,	'Hand-painted with intricate designs',	'Excellent',	'Home Decor',	0),
-(28,	'Leather Sofa',	2500,	'Comfortable and stylish with minor wear',	'Good',	'Furniture',	0),
-(29,	'Glass Coffee Table',	400,	'Modern design with tempered glass',	'Good',	'Furniture',	0),
-(30,	'Woven Area Rug',	300,	'Soft and durable with vibrant colors',	'Good',	'Home Decor',	0),
-(31,	'Wall Art',	150,	'Framed print of a famous painting',	'Excellent',	'Art',	0),
-(32,	'Garden Bench',	500,	'Sturdy wooden bench for outdoor use',	'Good',	'Furniture',	0),
-(33,	'Patio Umbrella',	120,	'Large umbrella for shade',	'Good',	'Outdoor',	0),
-(34,	'Bistro Set',	250,	'Table and two chairs for outdoor dining',	'Good',	'Outdoor',	0);
+(1,	'Emerald',	99999,	'Crafted by Minecraft Villagers',	'Excellent',	'Jewel',	1),
+(2,	'Rusty Can',	10,	'Test',	'Bad',	'Material',	0),
+(9,	'12345',	123456789,	'23456',	'Good',	'12345',	0),
+(10,	'test3',	121,	'test3',	'Excellent',	'test',	0),
+(11,	'Antique Victorian Chair',	2500,	'Excellent craftsmanship, original upholstery',	'Good',	'Furniture',	0),
+(12,	'1920s Diamond Ring',	15000,	'Art deco style, 2 carat diamond',	'Excellent',	'Jewelry',	0),
+(13,	'Vintage Rolex Watch',	8500,	'Original box and papers included',	'Excellent',	'Watches',	0),
+(14,	'Persian Carpet',	4000,	'Hand-woven, natural dyes',	'Good',	'Textiles',	0),
+(15,	'Bronze Sculpture',	3500,	'Signed by artist, limited edition',	'Excellent',	'Art',	0),
+(16,	'Ming Dynasty Vase',	12000,	'Authenticated, minor restoration',	'Fair',	'Pottery',	0),
+(17,	'First Edition Book',	5000,	'Signed by author, rare find',	'Good',	'Literature',	0),
+(18,	'Art Deco Lamp',	1800,	'Original glass shade, rewired',	'Good',	'Lighting',	0),
+(19,	'Vintage Camera',	900,	'Leica M3, working condition',	'Fair',	'Photography',	0),
+(20,	'Gold Pocket Watch',	3200,	'Swiss made, 18k gold case',	'Good',	'Watches',	0),
+(21,	'Tiffany Stained Glass',	7500,	'Original piece, documented',	'Excellent',	'Art Glass',	0),
+(22,	'Victorian Writing Desk',	4500,	'Mahogany, original hardware',	'Good',	'Furniture',	0),
+(23,	'Ancient Roman Coin',	2800,	'Authenticated, rare mint',	'Fair',	'Numismatics',	0),
+(24,	'Vintage Wine',	6000,	'Bordeaux 1982, perfect provenance',	'Excellent',	'Wine',	0),
+(25,	'Oil Painting',	9500,	'19th century landscape',	'Good',	'Art',	0),
+(26,	'Crystal Chandelier',	5500,	'French, 19th century',	'Good',	'Lighting',	0),
+(27,	'Samurai Sword',	11000,	'Edo period, authenticated',	'Good',	'Weapons',	0),
+(28,	'Emerald Necklace',	18000,	'Colombian emeralds, 18k gold',	'Excellent',	'Jewelry',	0),
+(29,	'Vintage Motorcycle',	15000,	'1960 Harley Davidson',	'Fair',	'Vehicles',	0),
+(30,	'Chinese Jade Carving',	3800,	'Qing Dynasty, certified',	'Good',	'Art',	0),
+(31,	'Emerald Block',	123,	'Crafted by Minecraft Villagers',	'Fair',	'Jewel',	1);
 
 DROP TABLE IF EXISTS `purchases`;
 CREATE TABLE `purchases` (
+  `purchase_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `condition_at_purchase` text DEFAULT NULL,
   `p_cost` bigint(20) DEFAULT NULL,
-  `p_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `purchase_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `ClientNumber` bigint(20) unsigned DEFAULT NULL,
+  `p_date` datetime DEFAULT NULL,
   `item_num` int(11) DEFAULT NULL,
+  `ClientNumber` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`purchase_id`),
   KEY `Items_Purchases` (`item_num`),
   KEY `AllClients_Purchases` (`ClientNumber`),
@@ -106,22 +93,18 @@ CREATE TABLE `purchases` (
   CONSTRAINT `purchases_ibfk_14` FOREIGN KEY (`item_num`) REFERENCES `items` (`item_num`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `purchases` (`condition_at_purchase`, `p_cost`, `p_date`, `purchase_id`, `ClientNumber`, `item_num`) VALUES
-('Excellent',	10000,	'2024-11-05 06:55:01',	47,	1,	NULL),
-('Excellent',	213213,	'2024-11-05 07:35:52',	48,	1,	NULL),
-('Excellent',	1214123,	'2024-11-05 08:08:13',	49,	1,	NULL),
-('Excellent',	234567,	'2024-11-05 08:10:04',	50,	2,	NULL),
-('Excellent',	456789,	'2024-11-05 08:20:23',	51,	1,	NULL);
+INSERT INTO `purchases` (`purchase_id`, `condition_at_purchase`, `p_cost`, `p_date`, `item_num`, `ClientNumber`) VALUES
+(5,	'Fair',	123,	'2024-11-05 18:59:06',	31,	23);
 
 DROP TABLE IF EXISTS `sales`;
 CREATE TABLE `sales` (
   `saleID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `commissionPaid` bigint(20) DEFAULT NULL,
-  `sellingPrice` bigint(20) NOT NULL,
-  `salesTax` decimal(10,0) NOT NULL,
-  `date_sold` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sellingPrice` bigint(20) DEFAULT NULL,
+  `salesTax` decimal(10,0) DEFAULT NULL,
+  `date_sold` datetime DEFAULT NULL,
+  `item_num` int(11) DEFAULT NULL,
   `ClientNumber` bigint(20) unsigned DEFAULT NULL,
-  `item_num` int(11) NOT NULL,
   PRIMARY KEY (`saleID`),
   KEY `AllClients_Sales` (`ClientNumber`),
   KEY `Items_Sales` (`item_num`),
@@ -129,7 +112,7 @@ CREATE TABLE `sales` (
   CONSTRAINT `sales_ibfk_5` FOREIGN KEY (`ClientNumber`) REFERENCES `allclients` (`ClientNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `sales` (`saleID`, `commissionPaid`, `sellingPrice`, `salesTax`, `date_sold`, `ClientNumber`, `item_num`) VALUES
-(6,	123123,	12232,	1468,	'2024-11-05 01:12:22',	1,	2);
+INSERT INTO `sales` (`saleID`, `commissionPaid`, `sellingPrice`, `salesTax`, `date_sold`, `item_num`, `ClientNumber`) VALUES
+(3,	150,	125,	15,	'2024-11-05 19:01:50',	31,	3);
 
--- 2024-11-05 08:31:28
+-- 2024-11-05 11:17:40
