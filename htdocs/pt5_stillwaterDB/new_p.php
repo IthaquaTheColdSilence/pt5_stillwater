@@ -112,7 +112,7 @@
             color: #FFF;
         }
 
-        a[href*="purchases.php"] {
+        a[href*="insert_p.php"] {
             display: inline-block;
             padding: 10px 20px;
             margin: 0 10px;
@@ -124,7 +124,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        a[href*="purchases.php"]:hover {
+        a[href*="insert_p.php"]:hover {
             background-color: #FB667A;
             cursor: pointer;
             transition: background-color 0.1s ease;
@@ -143,6 +143,7 @@
 <?php
 include("database.php");
 include("datetime.php");
+include("nav.php");
 
 if (isset($_POST['submit'])) {
     $lastName = $_POST['lastName'];
@@ -191,7 +192,7 @@ if (isset($_POST['submit'])) {
 <body>
     <br><br><br><br><br><br>
     <form action="" method="POST">
-        <a href="purchases.php">Back</a>
+        <a href="insert_p.php">Back</a>
         <br>
         <h2>Client Info:</h2>
             <div id="new_client_fields">

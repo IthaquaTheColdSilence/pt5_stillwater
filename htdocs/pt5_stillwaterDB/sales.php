@@ -40,6 +40,7 @@
     .td a[href*="sales.php?action=delete"]:hover {
         background-color: #FB667A;
         cursor: pointer;
+        transform: translateY(-2px);
         transition: background-color 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
@@ -76,22 +77,23 @@ if (!$query) {
 ?>
 
 <body>
-    <br><br><br><br><br><br>
+    <br><br><br><br><br>
+    <div class="table-wrapper">
     <table class="container">
         <thead>
             <tr>
                 <th class="th" colspan="7"><a href="insert_s.php">Add Record</a></th>
                 <th align="right">Stillwater Sales Record</th>
             </tr>
-            <tr>
-                <th align="center">Date Sold</th>
+            <tr align="center">
+                <th>Date Sold</th>
                 <th>Sold to</th>
                 <th>Item Description</th>
                 <th>Selling Price</th>
                 <th>Commission Paid</th>
                 <th>Sales Tax (12%)</th>
                 <th>Sale ID</th>
-                <th align="center">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody align="center">
@@ -125,6 +127,7 @@ if (!$query) {
             <?php } ?>
         </tbody>
     </table>
+    </div>
 
     <?php
     if (isset($_GET['action']) && isset($_GET['saleID'])) {

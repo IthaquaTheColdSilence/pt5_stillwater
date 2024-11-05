@@ -33,6 +33,7 @@ if (!$query) {
     .td a[href*="update_i.php"]:hover {
         background-color: #72BF78;
         cursor: pointer;
+        transform: translateY(-2px);
         transition: background-color 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
@@ -51,6 +52,7 @@ if (!$query) {
     .td a[href*="items.php?action=delete"]:hover {
         background-color: #FB667A;
         cursor: pointer;
+        transform: translateY(-2px);
         transition: background-color 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
@@ -59,33 +61,30 @@ if (!$query) {
         color: gold;
         font-weight: bold;
         padding: 5px;
-        border-radius: 5px;
     }
 
     .condition-good {
         color: greenyellow;
         font-weight: bold;
         padding: 5px;
-        border-radius: 5px;
     }
 
     .condition-fair {
         color: orange;
         font-weight: bold;
         padding: 5px;
-        border-radius: 5px;
     }
 
     .condition-bad {
         color: red;
         font-weight: bold;
         padding: 5px;
-        border-radius: 5px;
     }
 </style>
 </head>
 <body>
-    <br><br><br><br><br><br>
+    <br><br><br><br><br>
+    <div class="table-wrapper">
     <table class="container">
         <thead>
         <tr>
@@ -152,6 +151,8 @@ if (!$query) {
             }
         }
         ?>
+    </table>
+    </div>
 </body>
 
 </html>

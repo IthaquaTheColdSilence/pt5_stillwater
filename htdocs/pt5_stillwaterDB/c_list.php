@@ -33,6 +33,7 @@ if (!$query) {
     .td a[href*="update_c.php"]:hover {
         background-color: #72BF78;
         cursor: pointer;
+        transform: translateY(-2px);
         transition: background-color 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
@@ -51,6 +52,7 @@ if (!$query) {
     .td a[href*="c_list.php?action=delete"]:hover {
         background-color: #FB667A;
         cursor: pointer;
+        transform: translateY(-2px);
         transition: background-color 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
@@ -61,8 +63,9 @@ if (!$query) {
 </style>
 
 <body>
-    <br><br><br><br><br><br>
+    <br><br><br><br><br>
     <form action="c_list.php" method="POST">
+        <div class="table-wrapper">
         <table class="container" border="0">
             <thead>
                 <tr>
@@ -91,7 +94,7 @@ if (!$query) {
                 <?php } ?>
             </tbody>
         </table>
-
+        </div>
     </form>
 
     <?php
