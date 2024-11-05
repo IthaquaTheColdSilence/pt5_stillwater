@@ -74,10 +74,30 @@ include("datetime.php");
         background-color: #FB667A;
         color: #FFF;
     }
+    a[href*="sales.php"] {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #185875;
+            /* Blue accent to match table headings */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        a[href*="sales.php"]:hover {
+            background-color: #FB667A;
+            cursor: pointer;
+            transition: background-color 0.1s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* Pink hover effect to match table details */
+        }
 </style>
 <link rel="stylesheet" href="css/style.css">
 <br><br><br><br><br><br>
 <form action="insert_s.php" method="post">
+<a href="sales.php" align="left"><b>Back</b></a><br><br>
 
     <label for="item_num">Item:</label>
     <select id="item_num" name="item_num" required>

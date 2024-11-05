@@ -176,7 +176,7 @@ if (isset($_POST['submit'])) {
                                   VALUES ('$p_cost', '$condition_at_purchase', '$itemNumber', '$clientNumber', '$currentTimeStamp')";
             
             if (mysqli_query($conn, $insertPurchaseSql)) {
-                echo "<script>alert('Client, Purchase, and Item have been added successfully.'); window.location='purchases.php';</script>";
+                echo "<script>alert('New record has been added successfully.'); window.location='purchases.php';</script>";
             } else {
                 echo "<script>alert('Failed to add Purchase: " . mysqli_error($conn) . "'); window.location='purchases.php';</script>";
             }

@@ -122,7 +122,7 @@ include("nav.php")
         /* Slightly enlarge on hover */
     }
 
-    a[href*="c_list.php"] {
+    a[href*="purchases.php"] {
         display: inline-block;
         padding: 10px 20px;
         margin: 0 10px;
@@ -134,7 +134,7 @@ include("nav.php")
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
-    a[href*="c_list.php"]:hover {
+    a[href*="purchases.php"]:hover {
         background-color: #FB667A;
         cursor: pointer;
         transition: background-color 0.1s ease;
@@ -166,7 +166,7 @@ include("nav.php")
 </style>
 <br><br><br><br><br><br>
 <form action="insert_c.php" method="post">
-    <a href="c_list.php" align="left"><b>Back</b></a><br>
+    <a href="purchases.php" align="left"><b>Back</b></a><br>
 
     <h2 align="center">Choose a Client Type</h2>
     <br><br>
